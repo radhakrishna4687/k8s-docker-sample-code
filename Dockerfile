@@ -37,7 +37,7 @@ EXPOSE 8080
 WORKDIR /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/
 #ADD /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/*.war /usr/local/tomcat/webapps/app.war
 #RUN cp -RV /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/*.war /usr/local/tomcat/webapps/app.war
-COPY ./*.war /usr/local/tomcat/webapps/app.war
+COPY /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/*.war /usr/local/tomcat/webapps/app.war
 RUN cd /usr/local/tomcat/conf
 RUN sed -i '/<\/tomcat-users>/ i\  <user username="tomcat" password="tomcat" roles="manager-gui"/>' /usr/local/tomcat/conf/tomcat-users.xml
 RUN cd /usr/local/tomcat/bin && \
