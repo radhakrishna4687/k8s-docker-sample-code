@@ -7,12 +7,6 @@ pipeline {
         DOCKER_IMAGE  = "${NAME}:${VERSION}"
         CONTINER_NAME = "${NAME}:${env.BUILD_ID}"
     }
-        //DOCKER_IMAGE = "docker-test-server-12345"
-        //CONTAINER_NAME = "server-test-41"
-        //GIT_BRANCH = "java-webapp"
-        ///DOCKERHUB = credentials('dockerhub')
-        //HUB_CRED = credentials('dockerhubpwd')
-    //}
     stages {
         stage ('Clone Repository') {
             steps {
@@ -117,4 +111,4 @@ pipeline {
       //  }
 
     }
-
+} 
