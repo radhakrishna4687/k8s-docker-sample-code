@@ -2,7 +2,6 @@
 pipeline {
     agent any 
     environment {
-        environment {
         NAME = "docker-test-server-12345"
         VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
         DOCKER_IMAGE  = "${NAME}:${VERSION}"
