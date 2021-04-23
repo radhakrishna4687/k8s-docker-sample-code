@@ -1,8 +1,31 @@
 FROM ubuntu:latest
 ENV TOMCAT_VERSION=8.5.50
 
+ENV DEBIAN_FRONTEND=nonintercative
+RUN apt-get update &&  apt-get upgrade -y &&\
+    apt-get install -y apt-file && \
+    apt-file update && \
+    apt-get install -y openjdk-8-jdk && \
+    apt-get install -y wget && \
+    apt-get install -y maven && \
+    apt-get install -y git && \
+    apt-get clean;
+
+# Setup JAVA_HOME -- useful for docker commandline
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+RUN export JAVA_HOME
+
+# Setup JAVA_HOME -- useful for docker commandline
+ENV M2_HOME /usr/share/maven/
+RUN export M2_HOME
+
+
 #Install tomcat8
 RUN wget --quiet --no-cookies https://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tar.gz
+#Make dir in /usr/local/tomcat
+RUN mkdir -pv /usr/local/tomcat/
+CMD [ "chmod ugo+rwx /usr/local/tomcat/" ]
+
 
 RUN cd /tmp && tar xvfz tomcat.tar.gz
 #RUN cd /usr/local/tomcat/
