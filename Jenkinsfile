@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo "Checkout Git Repo"
             // git credentialsId: 'github', url: 'https://github.com/radhakrishna4687/:${GITHUB_BRANCH}'
-                git 'https://github.com/radhakrishna4687/docker-k8s-web-app.git'
+                git 'https://github.com/radhakrishna4687/k8s-docker-sample-code.git'
                 echo "Completed the Checkout the Git"
                 sh "pwd"
             }
