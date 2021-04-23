@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 ENV TOMCAT_VERSION=8.5.50
-ENV GITHUB_BRANCH=S3-DOCKER-DOCKERHUB-PIPELINE
+#ENV GITHUB_BRANCH=S3-DOCKER-DOCKERHUB-PIPELINE
 
 ENV DEBIAN_FRONTEND=nonintercative
 RUN apt-get update &&  apt-get upgrade -y &&\
@@ -34,9 +34,9 @@ RUN cp -Rv /tmp/apache-tomcat-8.5.50/* /usr/local/tomcat/
 
 #PORT EXPOSE
 EXPOSE 8080
-WORKDIR /var/lib/jenkins/workspace/${GITHUB_BRANCH}/target/
-ADD ./target/*.war /usr/local/tomcat/webapps/app.war
-#RUN cp /var/lib/jenkins/workspace/${GITHUB_BRANCH}/target/*.war /usr/local/tomcat/webapps/app.war
+WORKDIR /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/
+ADD /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/*.war /usr/local/tomcat/webapps/app.war
+#RUN cp /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/*.war /usr/local/tomcat/webapps/app.war
 
 RUN cd /usr/local/tomcat/conf
 RUN sed -i '/<\/tomcat-users>/ i\  <user username="tomcat" password="tomcat" roles="manager-gui"/>' /usr/local/tomcat/conf/tomcat-users.xml
