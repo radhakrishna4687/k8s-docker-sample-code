@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-app-repicaset
+  labels:
+    app: java-app
+    type: Web-Application
+spec:
+  template:
+    metadata:
+      name: web-application-test
+      labels:
+        app: java-app
+        type: Web-Application
+    spec:
+      containers:
+      - name: java-web-app
+        image: radhakrishna4687/java-test-web-app:Docker_tag
+     # ports:
+      #- containerPort: 8080
+      #  name: java-web-app
+  replicas: 3
+  selector:
+    matchLabels:
+      type: Web-Application   
+---            
+#node port
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-web-app
+  labels:
+    app: java-app
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8089
+  selector:
+    name: java-web-app 
