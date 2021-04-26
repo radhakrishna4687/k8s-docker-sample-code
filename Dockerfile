@@ -1,31 +1,6 @@
+  
 FROM ubuntu:latest
 ENV TOMCAT_VERSION=8.5.50
-#ENV GITHUB_BRANCH=S3-DOCKER-DOCKERHUB-PIPELINE
-
-ENV DEBIAN_FRONTEND=nonintercative
-RUN apt-get update &&  apt-get upgrade -y &&\
-    apt-get install -y apt-file && \
-    apt-file update && \
-    apt-get install -y openjdk-8-jdk && \
-    apt-get install -y wget && \
-    apt-get install -y maven && \
-    apt-get install -y git && \
-    apt-get clean;
-
-# Setup JAVA_HOME -- useful for docker commandline
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
-RUN export JAVA_HOME
-
-# Setup JAVA_HOME -- useful for docker commandline
-ENV M2_HOME /usr/share/maven/
-RUN export M2_HOME
-
-
-#Install tomcat8
-RUN wget --quiet --no-cookies https://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tar.gz
-#Make dir in /usr/local/tomcat
-RUN mkdir -pv /usr/local/tomcat/
-CMD [ "chmod ugo+rwx /usr/local/tomcat/" ]
 
 
 RUN cd /tmp && tar xvfz tomcat.tar.gz
@@ -34,11 +9,8 @@ RUN cp -Rv /tmp/apache-tomcat-8.5.50/* /usr/local/tomcat/
 
 #PORT EXPOSE
 EXPOSE 8080
-WORKDIR /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/
-#ADD /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/*.war /usr/local/tomcat/webapps/app.war
-#RUN cp -RV /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/*.war /usr/local/tomcat/webapps/app.war
-#COPY /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/*.war /usr/local/tomcat/webapps/app.war
-ADD ./target/idqlogindemo-1.0.0.war /usr/local/tomcat/webapps/app.war
+WORKDIR /home/samplecode/${GITHUB_BRANCH}/target/
+RUN cp  /var/lib/jenkins/workspace/artifacts-upload-s3-pipeline/target/*.war /usr/local/tomcat/webapps/app.war
 
 RUN cd /usr/local/tomcat/conf
 RUN sed -i '/<\/tomcat-users>/ i\  <user username="tomcat" password="tomcat" roles="manager-gui"/>' /usr/local/tomcat/conf/tomcat-users.xml
