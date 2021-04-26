@@ -24,6 +24,7 @@ pipeline {
                 sh "pwd"
             }
         }
+        /*
         stage ('Code Quality Gate status check') {
             steps{
                 script{
@@ -40,7 +41,7 @@ pipeline {
             }
           } 
         }     
-
+*/
         stage ('Maven Build WAR file') {
             steps {
                 sh '''
@@ -119,7 +120,7 @@ pipeline {
                 sh '''
                     final_tag=$(echo $Docker)tag | tr -d ' ')
                     echo ${final_tag}test
-                    sed -i "s/ocker_tag/$final_tag/g" pod.yml
+                    sed -i "s/docker_tag/$final_tag/g" pod.yml
                 '''    
             }
         }
