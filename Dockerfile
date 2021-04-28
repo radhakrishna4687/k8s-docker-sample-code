@@ -29,7 +29,7 @@ RUN cd /tmp && tar xvfz tomcat.tar.gz
 RUN mkdir -pv /usr/local/tomcat
 CMD [ "chmod ugo+rwx /usr/local/tomcat/" ]
 #RUN cd /usr/local/tomcat/
-RUN cp -Rv /tmp/apache-tomcat-8.5.50/* /usr/local/tomcat/
+RUN cp -Rf /tmp/apache-tomcat-8.5.50/* /usr/local/tomcat/
 
 #PORT EXPOSE
 EXPOSE 8080
