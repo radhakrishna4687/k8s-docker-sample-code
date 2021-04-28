@@ -46,7 +46,7 @@ pipeline {
         stage ('Maven Build WAR file') {
             steps {
                 sh '''
-                    mvn -f /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/pom.xml clean package
+                    mvn -f /var/lib/jenkins/workspace/SONAR-QUBE-jenkins-pipeline/pom.xml clean package
                 '''
                 //cp /var/lib/jenkins/workspace/artifacts-upload-s3-pipeline/target/*.war /home/ec2-user/
                 echo "Sucessfully Compile Java code and generated WAR file"
@@ -57,7 +57,7 @@ pipeline {
                     sh '''
                         aws s3api list-buckets
                         aws s3 mb s3://test-env-webaps
-                        aws s3 cp  /var/lib/jenkins/workspace/S3-DOCKER-DOCKERHUB-PIPELINE/target/*.war s3://test-env-webaps
+                        aws s3 cp  /var/lib/jenkins/workspace/SONAR-QUBE-jenkins-pipeline/target/*.war s3://test-env-webaps
                     '''
                     echo "Sucessfully upload the artifacyts to S3 buckets"
             }
