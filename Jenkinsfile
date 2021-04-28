@@ -137,6 +137,7 @@ pipeline {
                 '''    
             }
         }
+        /*
         stage ('Deploy Application in k8s Cluster') {
             steps {
                 kubernetesDeploy(
@@ -145,6 +146,7 @@ pipeline {
                 enableConfigSubstitution: true
                 )
             } 
-        }    
+        }  
+        */
     }
 }
