@@ -44,7 +44,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <dependency>
 			<groupId>org.apache.oltu.oauth2</groupId>
 			<artifactId>org.apache.oltu.oauth2.client</artifactId>
-			<version>1.0.1</version>
+			<version>1.0.2</version>
 		</dependency>
         <dependency>
 			<groupId>org.apache.oltu.oauth2</groupId>
