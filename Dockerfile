@@ -1,5 +1,5 @@
   
-FROM ubuntu:latest
+FROM ubuntu:20.04
 ENV TOMCAT_VERSION=8.5.50
 
 # to skip the eographic area:
