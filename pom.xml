@@ -54,7 +54,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20160807</version>
+			<version>20230227</version>
 		</dependency>		
     </dependencies>
 
